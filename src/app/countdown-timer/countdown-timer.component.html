@@ -1,0 +1,17 @@
+<mat-spinner *ngIf="isLoading" style="margin: 20% auto;"></mat-spinner>
+
+<mat-card *ngIf="!isLoading">
+  <mat-card-header style="display: block;">
+    <h2 style="text-align: center;">{{registredEvent.name}}</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="container-timer">
+      <ul>
+        <li><span>{{currentTime.day}}</span><br>DAYS</li>
+        <li><span>{{currentTime.hour}}</span><br>HOURS</li>
+        <li><span>{{currentTime.minute}}</span><br>MINUTES</li>
+        <li><span>{{currentTime.second}}</span><br>SECONDS</li>
+      </ul>
+    </div>
+  </mat-card-content>
+</mat-card>
