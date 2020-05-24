@@ -82,7 +82,7 @@ export class CountdownTimerComponent implements OnInit {
     return new Observable<any>((obs) => {
       webNotification.showNotification('Countdown Timer', {
         body: `The ${event.eventName} Event Successfully Ended.`,
-        icon: 'assets/favicon.ico',
+        icon: 'favicon.ico',
         autoClose: 10000
     }, function onShow(error, hide) {
         if (error) {
