@@ -33,17 +33,17 @@
           <p *ngIf="eventDate.errors.required" class="container-error">Enter the date of the event.</p>
         </div>
 
-        <button [disabled]="!formEvent.valid" mat-raised-button color="primary" (click)="registerEvent()">Save Event</button>
+        <button [disabled]="!formEvent.valid" mat-raised-button color="primary" (click)="registerEvent()" class="btn-save">
+          <mat-icon>save</mat-icon> Save Event
+        </button>
 
-        <button style="margin-left: 3%;" mat-raised-button color="warn" (click)="resetForm()">Clear Fields</button>
+        <button mat-raised-button color="warn" (click)="resetForm()" class="btn-clear">
+          <mat-icon>clear</mat-icon> Clear Fields</button>
       </form>
     </mat-card-content>
 </mat-card>
-<mat-card *ngIf="showTimer" class="container-main">
-  <mat-card-content>
+
+<div *ngIf="showTimer" class="container-main">
+    <button mat-raised-button color="primary" (click)="registerNewEvent()" style="margin: 2% auto; display: block;">Register New Event</button>
     <app-countdown-timer [registredEvent]="registredEvent"></app-countdown-timer>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="registerNewEvent()">Register New Event</button>
-  </mat-card-actions>
-</mat-card>
+</div>

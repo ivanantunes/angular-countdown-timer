@@ -1,1 +1,76 @@
-<router-outlet></router-outlet>
+<div>
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <a mat-button class="companyName" routerLink="/">
+      <span>Countdown Timer</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a mat-button routerLink="/register-event">
+        <mat-icon>event</mat-icon>&nbsp;
+        <span>Register Event</span>
+      </a>
+      <a mat-button routerLink="/all-event">
+        <mat-icon>date_range</mat-icon>&nbsp;
+        <span>All Events</span>
+      </a>
+      <a mat-button routerLink="/list-event">
+        <mat-icon class="container-tab-icon">event_note</mat-icon>&nbsp;
+        <span class="title-nav">List Events</span>
+      </a>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav class="container-side-nav" color="primary" #sidenav fxLayout="column" mode="over" opened="false"
+      fxHide.gt-sm="true">
+      <div fxLayout="column">
+        <a mat-button routerLink="/register-event">
+          <mat-icon>event</mat-icon>&nbsp;
+          <span>Register Event</span>
+        </a>
+        <a mat-button routerLink="/all-event">
+          <mat-icon>date_range</mat-icon>&nbsp;
+          <span>All Events</span>
+        </a>
+        <a mat-button routerLink="/list-event">
+          <mat-icon class="container-tab-icon">event_note</mat-icon>&nbsp;
+          <span class="title-nav">List Events</span>
+        </a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- <mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="container-tab-icon">event</mat-icon>
+      Register Event
+    </ng-template>
+    <app-register-events></app-register-events>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="container-tab-icon">date_range</mat-icon>
+      All Events
+    </ng-template>
+    <app-all-events></app-all-events>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="container-tab-icon">event_note</mat-icon>
+      List Events
+    </ng-template>
+    <app-list-events></app-list-events>
+  </mat-tab>
+</mat-tab-group> -->

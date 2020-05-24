@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterEvent } from '../interfaces';
+import { ModalAlertsService, DataBaseService } from '../services';
 
 @Component({
   selector: 'app-register-events',
@@ -16,7 +17,11 @@ export class RegisterEventsComponent implements OnInit {
 
   registredEvent: RegisterEvent;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private modal: ModalAlertsService,
+    private db: DataBaseService
+  ) { }
 
   ngOnInit() {
     this.formEvent = this.formBuilder.group({
@@ -29,14 +34,21 @@ export class RegisterEventsComponent implements OnInit {
     this.showForm = false;
 
     this.registredEvent = {
-      name: this.eventName.value,
-      date: this.eventDate.value
+      registeredDate: new Date(this.eventDate.value).toISOString(),
+      eventName: this.eventName.value,
+      eventStatus: 'A'
     };
-    if (this.registredEvent.date.getMinutes() < new Date().getMinutes() + 1) {
+    const regEvent = new Date(this.registredEvent.registeredDate);
+    const newDate = new Date();
+    if (regEvent.getMinutes() < newDate.getMinutes() + 1 &&
+        regEvent.toLocaleDateString() === newDate.toLocaleDateString()) {
       this.showForm = true;
-      console.log('Minimum Time: 1 minute');
+      this.modal.modalTerror('Error!', 'Minimum Time: 1 minute.');
     } else {
-      this.showTimer = true;
+      this.db.addObject(this.registredEvent).subscribe((res) => {
+        console.log('Registred Event Success');
+        this.showTimer = true;
+      }, (err) => this.modal.modalTerror('Error!', err));
     }
   }
 

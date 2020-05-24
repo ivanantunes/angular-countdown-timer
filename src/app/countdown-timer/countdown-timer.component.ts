@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Timer, RegisterEvent } from './../interfaces';
 import { Observable } from 'rxjs';
+import { ModalAlertsService, DataBaseService } from '../services';
+
+const webNotification = require('simple-web-notification');
 
 @Component({
   selector: 'app-countdown-timer',
@@ -12,12 +15,14 @@ export class CountdownTimerComponent implements OnInit {
   currentTime: Timer;
   isLoading = true;
 
-  constructor() {}
+  constructor(private db: DataBaseService, private modal: ModalAlertsService) {}
 
   ngOnInit() {
-    this.setTimer(this.registredEvent.date).subscribe(res => {
+    this.setTimer(new Date(this.registredEvent.registeredDate)).subscribe(res => {
       this.isLoading = false;
       this.currentTime = res;
+    }, (err) => {
+      this.modal.modalTerror('Error!', err);
     });
   }
 
@@ -45,12 +50,51 @@ export class CountdownTimerComponent implements OnInit {
             currentTime.minute === 0 &&
             currentTime.second === 0
           ) {
-              obs.next(currentTime);
-              obs.complete();
+              const updateObj: RegisterEvent = {
+                registeredDate: this.registredEvent.registeredDate,
+                eventName: this.registredEvent.eventName,
+                eventStatus: 'E',
+              };
+
+              this.db.updateObject(updateObj).subscribe(() => {
+                console.log('Update Event Finish');
+
+                this.notifier(updateObj).subscribe(() => console.log('Notificação Enviada com Sucesso!'),
+                (err) => this.modal.modalTerror('Error!', 'Enable Notifications You Can Have Pending Events.'));
+
+                obs.next(currentTime);
+
+                obs.complete();
+
+              }, (err) => {
+
+                obs.error(err);
+
+              });
             } else {
               obs.next(currentTime);
             }
       }, second);
+    });
+  }
+
+  private notifier(event: RegisterEvent): Observable<any> {
+    return new Observable<any>((obs) => {
+      webNotification.showNotification('Countdown Timer', {
+        body: `The ${event.eventName} Event Successfully Ended.`,
+        icon: 'assets/favicon.ico',
+        autoClose: 10000
+    }, function onShow(error, hide) {
+        if (error) {
+            obs.error(error);
+        } else {
+            setTimeout(function hideNotification() {
+                hide();
+                obs.next();
+                obs.complete();
+            }, 10000);
+        }
+    });
     });
   }
 }

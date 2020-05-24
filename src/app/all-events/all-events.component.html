@@ -1,0 +1,8 @@
+<h3 *ngIf="eventsAct.length === 0; else event" class="text">No Available Events</h3>
+
+<ng-template #event>
+  <div *ngFor="let event of eventsAct">
+    <app-countdown-timer [registredEvent]="event"></app-countdown-timer>
+    <mat-divider style="padding: 1%;"></mat-divider>
+  </div>
+</ng-template>

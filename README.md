@@ -1,27 +1,61 @@
-# AngularCountdownTimer
+# Countdown Timer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+**Tier:** 1-Beginner
 
-## Development server
+We all have important events we look forward to in life, birthdays,
+anniversaries, and holidays to name a few. Wouldn't it be nice to have an app
+that counts down the months, days, hours, minutes, and seconds to an event?
+Countdown Timer is just that app!
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The objective of Countdown Timer is to provide a continuously decrementing
+display of the he months, days, hours, minutes, and seconds to a user entered
+event.
 
-## Code scaffolding
+### Constraints
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Use only builtin language functions for your calculations rather than relying
+on a library or package like [MomentJS](https://momentjs.com/). This assumes,
+of course, that the language of your choice has adequate date and time
+manipulation functions built in.
+- You may not use any code generators such as the 
+[Counting Down To](https://countingdownto.com/) site. You should develop your
+own original implementation. 
 
-## Build
+## User Stories
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+-   [X] User can see an event input box containing an event name field, an
+date field, an optional time, and a 'Start' button.
+-   [X] User can define the event by entering its name, the date it is
+scheduled to take place, and an optional time of the event. If the time is 
+omitted it is assumed to be at Midnight on the event date in the local time
+zone.
+-   [X] User can see a warning message if the event name is blank.
+-   [X] User can see a warning message if the event date or time are incorrectly
+entered. 
+-   [X] User can see a warning message if the time until the event data and time
+that has been entered would overflow the precision of the countdown timer.
+-   [X] User can click on the 'Start' button to see the countdown timer start
+displaying the days, hours, minutes, and seconds until the event takes place.
+-   [X] User can see the elements in the countdown timer automatically
+decrement. For example, when the remaining seconds count reaches 0 the remaining
+minutes count will decrement by 1 and the seconds will start to countdown from 59. This progression must take place from seconds all the way up to the remaining days position in countdown display. 
 
-## Running unit tests
+## Bonus features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-   [X] User can save the event so that it persists across sessions
+-   [X] User can see an alert when the event is reached
+-   [X] User can specify more than one event. 
+-   [X] User can see a countdown timers for each event that has been defined.
 
-## Running end-to-end tests
+## Useful links and resources
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- Images of analog tube-based countdown timers can be found 
+[here](https://nixieshop.com/)
+- [`clearInterval` MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval)
+- [`setInterval` MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
+- [Date MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
-## Further help
+## Example projects
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+[Simple Clock/Countdown Timer](https://codepen.io/karlo-stekovic/pen/OajKVK)
+[Countdown Timer built with React](https://www.florin-pop.com/blog/2019/05/countdown-built-with-react/)

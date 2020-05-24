@@ -1,0 +1,43 @@
+.companyName{
+  font-size: 1.2em;
+}
+
+.mat-toolbar{
+height: 7vh;
+}
+
+div {
+  overflow: inherit;
+}
+
+.mat-sidenav-container{
+  min-height: 93vh !important;
+}
+
+a{
+  text-decoration: none;
+  font-size: 1.05em;
+  white-space: normal;
+}
+
+button{
+  min-width: min-content;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.container-side-nav {
+  width: 25%;
+}
+
+@media (max-width: 800px) {
+  .container-side-nav {
+    width: 50%;
+  }
+}
