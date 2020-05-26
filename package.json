@@ -26,6 +26,8 @@
     "core-js-bundle": "^3.6.5",
     "fake-indexeddb": "^3.0.0",
     "local-db": "^2.0.0",
+    "material-design-icons": "^3.0.1",
+    "roboto-fontface": "^0.10.0",
     "rxjs": "~6.5.4",
     "simple-web-notification": "^2.0.1",
     "tslib": "^1.10.0",
